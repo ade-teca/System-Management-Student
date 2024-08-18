@@ -9,11 +9,9 @@ public class DatabaseConfig {
     private static final String USER = "root";
     private static final String PASSWORD = "123456";
 
-    // Singleton instance
     private static Connection connection = null;
 
     public DatabaseConfig() {
-        // Construtor privado para evitar instanciação
     }
 
     public static Connection getConnection() {
