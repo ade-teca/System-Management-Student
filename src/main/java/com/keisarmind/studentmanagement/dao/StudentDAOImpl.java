@@ -59,14 +59,13 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public void saveStudent(Student student) {
-        String sql = "INSERT INTO students (name, email, password) VALUES (?, ?)";
+        String sql = "INSERT INTO students (name, email) VALUES (?, ?)";
 
         try (Connection conn = new DatabaseConfig().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, student.getName());
             stmt.setString(2, student.getEmail());
-
 
             stmt.executeUpdate();
             System.out.println("Student saved successfully.");
@@ -82,9 +81,9 @@ public class StudentDAOImpl implements StudentDAO {
         try (Connection conn = new DatabaseConfig().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, student.getName());
-            stmt.setString(2, student.getEmail());
-            stmt.setInt(4, student.getId());
+            stmt.setString(2, student.getName());
+            stmt.setString(3, student.getEmail());
+            stmt.setInt(1, student.getId());
 
             stmt.executeUpdate();
             System.out.println("Student updated successfully.");

@@ -14,79 +14,79 @@ public class Main {
         int choose;
 
         do {
-            System.out.println("\nChoose an operation:");
-            System.out.println("1 - Get all the students");
-            System.out.println("2 - Find student based on ID");
-            System.out.println("3 - Save new student");
-            System.out.println("4 - Update student data");
-            System.out.println("5 - Delete a student based on ID");
-            System.out.println("0 - Exit");
-            System.out.print("Your choice: ");
+            System.out.println("\nEscolha uma operação:");
+            System.out.println("1 - Carregar todos estudantes");
+            System.out.println("2 - Encontrar o estudando através do ID");
+            System.out.println("3 - Adicionar um novo estudante");
+            System.out.println("4 - atualizar dados do estudante");
+            System.out.println("5 - Eliminar o estudante através do ID");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma das opções acima: ");
             choose = scanner.nextInt();
 
             switch (choose) {
                 case 1:
                     List<Student> students = studentService.getAllStudents();
                     if (students.isEmpty()) {
-                        System.out.println("No students found.");
+                        System.out.println("Estudante não encontrado.");
                     } else {
                         students.forEach(student ->
                                 System.out.println(student.getId() + ": " + student.getName()));
                     }
                     break;
                 case 2:
-                    System.out.print("Enter student ID: ");
+                    System.out.print("Insira o ID: ");
                     int id = scanner.nextInt();
                     Student student = studentService.findStudentById(id);
                     if (student != null) {
-                        System.out.println("Student found: " + student.getName());
+                        System.out.println("Estudante encontrado: " + student.getName());
                     } else {
-                        System.out.println("Student not found.");
+                        System.out.println("Estudante não esncontrado.");
                     }
                     break;
                 case 3:
-                    System.out.print("Enter student name: ");
+                    System.out.print("Insira o nome do estudante: ");
                     scanner.nextLine(); // Consume newline
                     String name = scanner.nextLine();
                     Student newStudent = new Student();
                     newStudent.setName(name);
-                    System.out.print("Enter student email: ");
+                    System.out.print("Insira o e-mail do estudante: ");
                     scanner.nextLine(); // Consume newline
                     String email = scanner.nextLine();
                     newStudent.setEmail(email);
                     try {
                         studentService.saveStudent(newStudent);
-                        System.out.println("Student saved successfully.");
+                        System.out.println("Estudante adicionado com sucesso.");
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case 4:
-                    System.out.print("Enter student ID to update: ");
+                    System.out.print("Insira o ID para atualizar os dados: ");
                     int updateId = scanner.nextInt();
                     scanner.nextLine(); // Consume newline
                     Student updateStudent = studentService.findStudentById(updateId);
                     if (updateStudent != null) {
-                        System.out.print("Enter new name: ");
+                        System.out.print("Insira o novo nome: ");
                         String newName = scanner.nextLine();
                         updateStudent.setName(newName);
                         studentService.updateStudent(updateStudent);
-                        System.out.println("Student updated successfully.");
+                        System.out.println("Dados atualizado com sucesso.");
                     } else {
-                        System.out.println("Student not found.");
+                        System.out.println("Estudante não encontrado.");
                     }
                     break;
                 case 5:
-                    System.out.print("Enter student ID to delete: ");
+                    System.out.print("Insira o ID do estudante: ");
                     int deleteId = scanner.nextInt();
                     studentService.deleteStudentById(deleteId);
-                    System.out.println("Student deleted successfully.");
+                    System.out.println("Estudante eliminado com sucesso.");
                     break;
                 case 0:
-                    System.out.println("Exiting...");
+                    System.out.println("Saindo...");
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Opção inválida. Por favor, tenta novamente");
             }
         } while (choose != 0);
 

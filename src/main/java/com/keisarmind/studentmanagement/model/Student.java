@@ -4,16 +4,14 @@ public class Student {
     private int id;
     private String name;
     private String email;
-    private int age;
 
     public Student(){
 
     }
-    public Student(int id, String name, String email, int age) {
+    public Student(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.age = age;
     }
 
     public int getId() {
@@ -40,21 +38,12 @@ public class Student {
         this.email = email;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Estudante{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                '}';
+                ", nome='" + name + '\'' +
+                ", e-mail='" + email + '\'' + '}';
     }
 }

@@ -25,7 +25,7 @@ public class StudentService {
         // Exemplo de lógica de negócio:
         // Validar se o nome do estudante não está vazio
         if (student.getName() == null || student.getName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Student name cannot be empty");
+            throw new IllegalArgumentException("O nome do estudante não deve estar vazio");
         }
         studentDAO.saveStudent(student);
     }
@@ -34,7 +34,7 @@ public class StudentService {
         // Verifica se o estudante existe antes de atualizar
         Student existingStudent = studentDAO.findStudentById(student.getId());
         if (existingStudent == null) {
-            throw new IllegalArgumentException("Student not found");
+            throw new IllegalArgumentException("Estudante não encontrado");
         }
         studentDAO.updateStudent(student);
     }
